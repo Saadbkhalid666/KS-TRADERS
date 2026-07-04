@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, ShoppingCart } from "lucide-react";
-import { melfira } from "@/app/layout";
+import { melfira } from "../fonts/fonts";
 
 const navLinks = [
   { name: "Home", href: "/" },

@@ -1,5 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import localFont from "next/font/local"
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,9 +16,7 @@ export const metadata = {
   title: "KS Traders",
   description: "Wholesale Water Bottles",
 };
-export const melfira = localFont({
-  src:"./fonts/melfira.ttf"
-})
+
 
 export default function RootLayout({ children }) {
   return (
