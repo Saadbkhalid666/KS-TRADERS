@@ -26,7 +26,7 @@ export const Hero = () => {
               Premium Nestle Pure Life
               Water Delivered at
               <br />
-              <span className="text-[#e63539]">Wholesale Prices</span>
+              <span className="text-[#e63539] ">Wholesale Prices</span>
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg text-gray-700">
@@ -36,7 +36,7 @@ export const Hero = () => {
             </p>
 
             <div className="mt-8 flex gap-4">
-              <button className="cursor-target rounded-lg bg-red-600 px-6 py-3 font-semibold text-white">
+              <button className="rounded-lg bg-red-600 px-6 py-3 font-semibold text-white">
                 Shop Now
               </button>
 
