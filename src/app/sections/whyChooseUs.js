@@ -38,7 +38,7 @@ export const WhyChoseUs = () => {
     <div className=" pt-20 pb-10 bg-[#f8f8fa] mx-auto ">
         
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols3 lg:grid-cols-4 gap-4 ml-2 mr-2 ">
+      <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-4 gap-4 ml-2 mr-2 ">
         {featuresCards.map((item, index) => {
             return (
                 <div key={index} className="bg-white px-10 py-15 rounded-3xl border-2 border-gray-400 cursor-target hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-2xl ">
