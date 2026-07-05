@@ -40,25 +40,7 @@ export const Navbar = () => {
               <li key={item.name}>
                 <Link
                   href={item.href}
-                  className="
-                    relative
-                    text-lg
-                    font-medium
-                    text-[#666666]
-                    transition-colors
-                    duration-300
-                    hover:text-[#E53935]
-                    after:absolute
-                    after:left-0
-                    after:-bottom-1
-                    after:h-0.5
-                    after:w-0
-                    after:bg-[#E53935]
-                    after:transition-all
-                    after:duration-300
-                    hover:after:w-full
-                    cursor-target
-                  "
+                  className="relative text-lg font-medium text-[#666666] transition-colors duration-300 hover:text-[#E53935] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-[#E53935] after:transition-all after:duration-300 hover:after:w-full cursor-target"
                 >
                   {item.name}
                 </Link>
