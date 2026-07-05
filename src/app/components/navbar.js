@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import { melfira } from "../fonts/fonts";
-import TargetCursor from "./cursor/cursor";
+ 
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -17,14 +17,7 @@ export const Navbar = () => {
 
   return (
     <header className=" top-0 left-0 w-full  border-b border-gray-200 bg-white/80 backdrop-blur-xl">
-      <TargetCursor
-        spinDuration={2}
-        hideDefaultCursor
-        parallaxOn
-        hoverDuration={0.2}
-        cursorColor="#ffffff"
-        cursorColorOnTarget="#B497CF"
-      />
+      
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-8">
         <Link
           href="/"
