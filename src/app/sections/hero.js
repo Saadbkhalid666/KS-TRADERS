@@ -1,19 +1,11 @@
 "use client";
 
 import DotField from "../components/background/dotField";
-import TargetCursor from "../components/cursor/cursor";
 
 export const Hero = () => {
   return (
-    <div className="h-screen w-full bg-[#e5e7eb]">
-         <TargetCursor
-                spinDuration={2}
-                hideDefaultCursor
-                parallaxOn
-                hoverDuration={0.2}
-                cursorColor="#ffffff"
-                cursorColorOnTarget="#B497CF"
-              />
+    <div className="h-screen w-full   bg-[#e5e7eb]">
+         
       <DotField
         dotRadius={1.5}
         dotSpacing={14}
