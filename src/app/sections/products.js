@@ -1,10 +1,9 @@
 "use client"
 import Image from "next/image";
-import halflitre from "../assets/0.5lbgremove.png";
-import oneAndHalfLitre from "../assets/1.5lbgremove.png";
-import fiveLitre from "../assets/5lbgremove.png";
+import halflitre from "../assets/0.5l.jpg";
+import oneAndHalfLitre from "../assets/1.5l.jpg";
+import fiveLitre from "../assets/5l.jpg";
 import { useState } from "react";
-import { sansation } from "../fonts/fonts";
 export const Products = () => {
 
 const [quantity, setQuantity] = useState("1")
@@ -42,7 +41,7 @@ const [quantity, setQuantity] = useState("1")
           <div key={index}>
             <div className=" mx-auto bg-white border-2 border-gray-400 rounded-3xl   ">
               <div>
-                <Image className="w-60" src={item.img} alt="product image" />
+                <Image className="rounded-tl-3xl rounded-tr-3xl  hover:scale-105 object-fill duration-300 ease-in-out transition-all" src={item.img} alt="product image" />
               </div>
 
               <div>
