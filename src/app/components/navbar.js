@@ -1,9 +1,10 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import { melfira } from "../fonts/fonts";
+import TargetCursor from "./cursor/cursor";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -15,12 +16,19 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-xl">
+    <header className=" top-0 left-0 w-full  border-b border-gray-200 bg-white/80 backdrop-blur-xl">
+      <TargetCursor
+        spinDuration={2}
+        hideDefaultCursor
+        parallaxOn
+        hoverDuration={0.2}
+        cursorColor="#ffffff"
+        cursorColorOnTarget="#B497CF"
+      />
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-8">
-        {/* Logo */}
         <Link
           href="/"
-          className={`${melfira.className} text-2xl md:text-3xl text-[#E53935]`}
+          className={`${melfira.className} cursor-target text-2xl md:text-3xl text-[#E53935]`}
         >
           KS TRADERS
         </Link>
@@ -32,24 +40,7 @@ export const Navbar = () => {
               <li key={item.name}>
                 <Link
                   href={item.href}
-                  className="
-                    relative
-                    text-lg
-                    font-medium
-                    text-[#666666]
-                    transition-colors
-                    duration-300
-                    hover:text-[#E53935]
-                    after:absolute
-                    after:left-0
-                    after:-bottom-1
-                    after:h-0.5
-                    after:w-0
-                    after:bg-[#E53935]
-                    after:transition-all
-                    after:duration-300
-                    hover:after:w-full
-                  "
+                  className="relative text-lg font-medium text-[#666666] transition-colors duration-300 hover:text-[#E53935] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-[#E53935] after:transition-all after:duration-300 hover:after:w-full cursor-target"
                 >
                   {item.name}
                 </Link>
@@ -58,26 +49,21 @@ export const Navbar = () => {
           </ul>
         </nav>
 
-        {/* Desktop Right */}
         <div className="hidden md:flex items-center gap-4">
-          <button className="rounded-full p-2 transition hover:bg-red-50">
+          <button className="rounded-full p-2 transition cursor-target hover:bg-red-50">
             <ShoppingCart
               size={22}
               className="text-gray-600 hover:text-[#E53935]"
             />
           </button>
 
-          <button className="rounded-xl bg-[#E53935] px-6 py-3 font-semibold text-white transition duration-300 hover:bg-red-700 active:scale-95">
+          <button className="rounded-xl cursor-target bg-[#E53935] px-6 py-3 font-semibold text-white transition duration-300 hover:bg-red-700 active:scale-95">
             Order Now
           </button>
         </div>
 
-        {/* Mobile Buttons */}
         <div className="flex items-center gap-3 md:hidden">
-          <ShoppingCart
-            size={22}
-            className="cursor-pointer text-gray-700"
-          />
+          <ShoppingCart size={22} className="cursor-pointer text-gray-700" />
 
           <button onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? (
