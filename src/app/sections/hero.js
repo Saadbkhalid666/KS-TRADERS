@@ -1,6 +1,7 @@
+"use client"
 export const Hero = () => {
   return (
-    <div>
+    <div className="bg-[#e5e7eb] h-screen w-full">
       <div className="contact-container flex flex-col">
 
       <h1>
