@@ -4,7 +4,7 @@ export const metadata = {
   description: "Terms of Sale for KS Traders Wholesale Nestlé Water.",
 };
 
-export  function TermsOfSale() {
+export  default function TermsOfSale() {
   return (
     <main className="min-h-screen bg-[#f5f5f5] py-16">
       <div className="mx-auto max-w-5xl rounded-2xl bg-white shadow-lg">
