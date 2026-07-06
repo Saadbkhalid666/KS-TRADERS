@@ -26,7 +26,7 @@ export const Footer = () => {
             <h5 className="mb-1 font-bold text-white cursor-target">Legal</h5>
 
             <Link
-              href="/pages/terms"
+              href="/terms"
               className="text-sm text-gray-400 transition cursor-target hover:text-red-500"
             >
               Terms of Sale
