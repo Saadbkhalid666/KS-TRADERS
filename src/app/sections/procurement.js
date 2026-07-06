@@ -20,8 +20,8 @@ export const ProcurementSection = () => {
   ];
 
   return (
-    <div >
-      <h1>StreamLined Procurement</h1>
+    <div className="mx-auto h-max  bg-gray-300 pt-10 flex justify-center">
+      <h1 className="text-3xl  font-mono font-bold cursor-target w-max">StreamLined Procurement</h1>
     </div>
   );
 };
