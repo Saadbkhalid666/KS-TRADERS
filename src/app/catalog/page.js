@@ -1,36 +1,161 @@
+"use client"
+import Image from "next/image";
+import halflitre from "../assets/0.5lbgremove.png"
+import oneAndHalfLitre from "../assets/1.5lbgremove.png"
+import fiveLitre from "../assets/5lbgremove.png"
+import { useState } from "react";
+
 export default function Page(){
 
-// data/products.js
+ const initialProducts = [
+    {
+      id: 1,
+      heading: "500ml Everyday Case",
+      slug:"500ml",
+      about:
+        "The standard for convenience. Perfect for guest rooms, retail counters, and corporate events.",
+      unitsLabel: "24 Units / Case",
+      oldPrice: "900rs",
+      price: "700rs",
+      badge: "Most Popular",
+      badgeStyle: "bg-red-600 text-white",
+      defaultQty: 10,
+      img: halflitre,
+    },
+    {
+      id: 2,
+      heading: "1.5L High Capacity",
+      slug:"1500ml",
+      about:
+        "Designed for active hydration. Ideal for gymnasiums, sports facilities, and site canteens.",
+      unitsLabel: "12 Units / Case",
+      oldPrice: "720rs",
+      price: "560rs",
+      badge: null,
+      badgeStyle: "",
+      defaultQty: 5,
+      img: oneAndHalfLitre,
+    },
+    {
+      id: 3,
+      heading: "5L Bulk Jug",
+      slug:"5000ml",
+      about:
+        "Maximum efficiency for bulk use. Best for hospitality kitchens and industrial water stations.",
+      unitsLabel: "4 Units / Case",
+      oldPrice: "480rs",
+      price: "350rs",
+      badge: "Best Value",
+      badgeStyle: "bg-gray-900 text-white",
+      defaultQty: 20,
+      img: fiveLitre,
+    },
+  ];
 
- const products = [
-  {
-    id: 1,
-    slug: "nestle-water-500ml",
-    name: "Nestle Water 500ml",
-    price: 700,
-    image: "/500ml.png",
-  },
-  {
-    id: 2,
-    slug: "nestle-water-1-5l",
-    name: "Nestle Water 1.5L",
-    price: 560,
-    image: "/1.5l.png",
-  },
-  {
-    id: 3,
-    slug: "nestle-water-5l",
-    name: "Nestle Water 5L",
-    price: 350,
-    image: "/5l.png",
-  },
-];
+  const [quantities, setQuantities] = useState(
+    initialProducts.reduce(
+      (acc, item) => ({ ...acc, [item.id]: item.defaultQty }),
+      {}
+    )
+  );
 
-  return <div className="mx-auto bg-gray-100 w-full h-max">
+  const updateQuantity = (id, delta) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [id]: Math.max(1, prev[id] + delta),
+    }));
+  };
 
-<p>Store / All Products</p>
-<h1>Wholesale Catalog</h1>
-<p>Premium hydration solutions at industrial scale. specialized pricing for retail chains, distributions, and logistics partners.</p>
+  return (
+    <div className="pt-20 pb-20   bg-gray-100">
+      <div className="text-center mb-16 px-6">
+        <h1 className="font-bold font-serif text-3xl text-gray-700">
+          Choose Your Solution
+        </h1>
+        <p className="mt-3 text-gray-500 max-w-2xl mx-auto">
+          Optimized formats for retail, corporate offices, and heavy-duty
+          industrial needs.
+        </p>
+      </div>
 
-  </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto px-6">
+        {initialProducts.map((item) => {
+          const qty = quantities[item.id];
+
+          return (
+            <div
+              key={item.id}
+              className="cursor-target bg-white border-2 border-gray-400 rounded-3xl overflow-hidden group flex flex-col"
+            >
+              <div className="relative h-64 overflow-hidden">
+                <Image
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  src={item.img}
+                  alt={item.heading}
+                />
+                {item.badge && (
+                  <div className="absolute top-4 left-4">
+                    <span
+                      className={`${item.badgeStyle} text-xs font-semibold px-4 py-1 rounded-full uppercase tracking-wider`}
+                    >
+                      {item.badge}
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              <div className="p-6 flex flex-col flex-1">
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-xl font-bold text-gray-800">
+                    {item.heading}
+                  </h3>
+                  <span className="text-sm text-red-600 font-bold whitespace-nowrap ml-2">
+                    {item.unitsLabel}
+                  </span>
+                </div>
+
+                <p className="text-gray-600 mb-6 flex-1">{item.about}</p>
+
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="flex border border-gray-300 rounded-lg overflow-hidden">
+                    <button
+                      onClick={() => updateQuantity(item.id, -1)}
+                      className="cursor-target px-3 py-1 bg-gray-50 hover:bg-gray-200 transition-colors font-bold"
+                    >
+                      -
+                    </button>
+                    <span className="px-4 py-1 border-x border-gray-300 font-bold">
+                      {qty}
+                    </span>
+                    <button
+                      onClick={() => updateQuantity(item.id, 1)}
+                      className="cursor-target px-3 py-1 bg-gray-50 hover:bg-gray-200 transition-colors font-bold"
+                    >
+                      +
+                    </button>
+                  </div>
+
+                  <div className="flex-1 text-right">
+                    <span className="block text-xs text-gray-400 line-through">
+                      {item.oldPrice}
+                    </span>
+                    <span className="text-xl font-bold text-gray-900">
+                      {item.price}{" "}
+                      <span className="text-sm font-normal text-gray-500">
+                        / case
+                      </span>
+                    </span>
+                  </div>
+                </div>
+
+                <button className="cursor-target w-full bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition-all active:scale-95">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  )
 };
