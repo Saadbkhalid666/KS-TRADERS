@@ -4,6 +4,7 @@ import halflitre from "../assets/0.5l.jpg";
 import oneAndHalfLitre from "../assets/1.5l.jpg";
 import fiveLitre from "../assets/5l.jpg";
 import { useState } from "react";
+import Link from "next/link";
 
 export const Products = () => {
   const initialProducts = [
@@ -143,10 +144,11 @@ export const Products = () => {
                     </span>
                   </div>
                 </div>
-
+<Link href={"/catalog"}>
                 <button className="cursor-target w-full bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition-all active:scale-95">
                   Add to Cart
                 </button>
+</Link>
               </div>
             </div>
           );
