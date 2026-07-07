@@ -29,7 +29,7 @@ export default async function ProductPage({ params }) {
           {/* Product Image */}
           <div className="bg-gray-100 rounded-3xl p-10 flex items-center justify-center">
             <Image
-              src={product.image}
+              src={product.img}
               alt={product.name}
               width={500}
               height={500}
@@ -59,7 +59,7 @@ export default async function ProductPage({ params }) {
             </div>
 
             <p className="text-gray-600 mt-8 leading-8">
-              {product.description}
+              {product.about}
             </p>
 
             {/* Quantity */}

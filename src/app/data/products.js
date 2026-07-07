@@ -1,3 +1,6 @@
+import halflitre from "../assets/0.5lbgremove.png"
+import oneAndHalfLitre from "../assets/1.5lbgremove.png"
+import fiveLitre from "../assets/5lbgremove.png"
 export  const Products = [
     {
       id: 1,
