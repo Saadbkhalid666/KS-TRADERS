@@ -3,6 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Products } from "@/app/data/products";
 import { use, useState } from "react";
+import Link from "next/link";
 
 export default function ProductPage({ params }) {
   const { slug } =  use(params);
@@ -31,7 +32,7 @@ export default function ProductPage({ params }) {
 
         {/* Breadcrumb */}
         <div className="text-sm text-gray-500 mb-8">
-          Home / Catalog /
+          Home /<Link href={"/catalog"} className="hover:text-red-400"> Catalog </Link> /
           <span className="text-[#e63539] font-semibold">
             {" "}
             {product.heading}
@@ -54,11 +55,11 @@ export default function ProductPage({ params }) {
           {/* Product Details */}
           <div>
 
-            <span className="inline-block bg-[#e63539]/10 text-[#e63539] px-4 py-1 rounded-full font-medium">
+            <span className="inline-block bg-[#e63539]/10 text-[#e63539] px-4 py-1 rounded-full font-medium cursor-target">
               Wholesale Product
             </span>
 
-            <h1 className="text-5xl font-bold text-black mt-4">
+            <h1 className="text-5xl font-bold text-black mt-4 cursor-target">
               {product.heading}
             </h1>
 
@@ -85,7 +86,7 @@ export default function ProductPage({ params }) {
 
               <div className="flex items-center border w-fit rounded-xl overflow-hidden">
 
-                <button onClick={() => updateQuantity(product.id, -1)} className="px-5 py-3 text-2xl hover:bg-gray-100">
+                <button onClick={() => updateQuantity(product.id, -1)} className="cursor-target px-5 py-3 text-2xl hover:bg-gray-100">
                   -
                 </button>
 
@@ -93,7 +94,7 @@ export default function ProductPage({ params }) {
                   {quantities[product.id]}
                 </span>
 
-                <button onClick={() => updateQuantity(product.id, 1)} className="px-5 py-3 text-2xl hover:bg-gray-100">
+                <button onClick={() => updateQuantity(product.id, 1)} className="px-5 py-3 cursor-target text-2xl hover:bg-gray-100">
                   +
                 </button>
 
@@ -104,11 +105,11 @@ export default function ProductPage({ params }) {
             {/* Buttons */}
             <div className="flex gap-4 mt-10">
 
-              <button className="bg-[#e63539] hover:bg-red-700 transition text-white px-10 py-4 rounded-xl font-semibold">
+              <button className="bg-[#e63539] hover:bg-red-700 transition text-white px-10 py-4 rounded-xl cursor-target font-semibold">
                 Add To Cart
               </button>
 
-              <button className="border-2 border-black hover:bg-black hover:text-white transition px-10 py-4 rounded-xl font-semibold">
+              <button className="border-2 border-black hover:bg-black hover:text-white transition px-10 py-4 rounded-xl cursor-target font-semibold">
                 Buy Now
               </button>
 
