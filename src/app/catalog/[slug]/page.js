@@ -6,14 +6,13 @@ import { use, useState } from "react";
 
 export default function ProductPage({ params }) {
   const { slug } =  use(params);
-const [quantity, setQuantity] = useState("1")
   const product = Products.find((p) => p.slug === slug);
 
   if (!product) {
     notFound();
   }
   const [quantities, setQuantities] = useState(
-    initialProducts.reduce(
+    Products.reduce(
       (acc, item) => ({ ...acc, [item.id]: item.defaultQty }),
       {}
     )
@@ -86,15 +85,15 @@ const [quantity, setQuantity] = useState("1")
 
               <div className="flex items-center border w-fit rounded-xl overflow-hidden">
 
-                <button className="px-5 py-3 text-2xl hover:bg-gray-100">
+                <button onClick={() => updateQuantity(product.id, -1)} className="px-5 py-3 text-2xl hover:bg-gray-100">
                   -
                 </button>
 
                 <span className="px-8 font-semibold">
-                  1
+                  {quantities[product.id]}
                 </span>
 
-                <button className="px-5 py-3 text-2xl hover:bg-gray-100">
+                <button onClick={() => updateQuantity(product.id, 1)} className="px-5 py-3 text-2xl hover:bg-gray-100">
                   +
                 </button>
 
