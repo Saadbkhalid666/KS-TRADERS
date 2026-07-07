@@ -3,36 +3,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft } from "lucide-react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { decreaseQuantity, increaseQuantity } from "../redux/slice";
 
 export default function Page() {
-const cart = useSelector(state => state.cart.cartItems)
-console.log(cart)  
-const cartItems = [
-    {
-      id: 1,
-      name: "Nestlé Pure Life 500ml",
-      price: 60,
-      quantity: 5,
-      image: "/products/500ml.png",
-    },
-    {
-      id: 2,
-      name: "Nestlé Pure Life 1.5L",
-      price: 120,
-      quantity: 2,
-      image: "/products/1.5l.png",
-    },
-  ];
+const cartItems = useSelector(state => state.cart.cartItems)
+const dispatch = useDispatch()
 
-  const subtotal = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0,
-  );
 
-  const delivery = 200;
-  const total = subtotal + delivery;
+const totalPrice = cartItems.reduce((total,item)=> total + item.price * item.quantity,0)
 
+if(cartItems.length === 0){
+  return (
+    <div className="mt-24 text-center"><h1 className="text-4xl font-bold">Cart is Empty</h1></div>
+  )
+}
+
+ 
   return (
     <section className="min-h-screen bg-[#f8f8f8] py-14">
       <div className="max-w-7xl mx-auto px-6">
@@ -74,8 +61,8 @@ const cartItems = [
                   {/* Image */}
                   <div className="w-full md:w-44 h-44 bg-gray-100 rounded-2xl flex justify-center items-center">
                     <Image
-                      src={item.image}
-                      alt={item.name}
+                      src={item.img}
+                      alt={item.heading}
                       width={120}
                       height={120}
                       className="object-contain"
@@ -86,7 +73,7 @@ const cartItems = [
                   <div className="flex-1 flex flex-col justify-between">
                     <div>
                       <h2 className="text-2xl font-bold text-black">
-                        {item.name}
+                        {item.heading}
                       </h2>
 
                       <p className="text-gray-500 mt-2">
@@ -102,7 +89,7 @@ const cartItems = [
                       {/* Quantity */}
 
                       <div className="flex border rounded-xl overflow-hidden">
-                        <button className="p-3 hover:bg-gray-100">
+                        <button onClick={()=>dispatch(decreaseQuantity(item.id))} className="p-3 hover:bg-gray-100">
                           <Minus size={18} />
                         </button>
 
@@ -110,7 +97,7 @@ const cartItems = [
                           {item.quantity}
                         </span>
 
-                        <button className="p-3 hover:bg-gray-100">
+                        <button onClick={()=>dispatch(increaseQuantity(item.id))} className="p-3 hover:bg-gray-100">
                           <Plus size={18} />
                         </button>
                       </div>
