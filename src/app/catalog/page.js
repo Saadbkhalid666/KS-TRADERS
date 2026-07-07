@@ -85,16 +85,16 @@ export default function Page(){
           return (
             <div
               key={item.id}
-              className="cursor-target bg-white border-2 border-gray-400 rounded-3xl overflow-hidden group flex flex-col"
+              className="cursor-target bg-white border-2 border-gray-400 rounded-3xl  group flex flex-col"
             >
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-64  ">
                 <Image
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="  group-hover:scale-105   hover:-translate-y-20 hover:rotate-45 transition-transform duration-500"
                   src={item.img}
                   alt={item.heading}
                 />
                 {item.badge && (
-                  <div className="absolute top-4 left-4">
+                  <div className="absolute top-4 left-4 bg-white">
                     <span
                       className={`${item.badgeStyle} text-xs font-semibold px-4 py-1 rounded-full uppercase tracking-wider`}
                     >
