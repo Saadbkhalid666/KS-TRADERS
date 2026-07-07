@@ -10,7 +10,7 @@ export  default function TermsOfSale() {
       <div className="mx-auto max-w-5xl rounded-2xl bg-white shadow-lg">
         {/* Header */}
         <div className="rounded-t-2xl bg-[#e63539] px-8 py-10 text-white">
-          <h1 className="text-4xl font-bold">Terms of Sale</h1>
+          <h1 className="text-4xl font-bold cursor-target">Terms of Sale</h1>
           <p className="mt-3 text-white/90">
             Please read these Terms of Sale carefully before placing an order
             with KS Traders.
