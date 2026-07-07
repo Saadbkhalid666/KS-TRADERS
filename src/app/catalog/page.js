@@ -1,63 +1,18 @@
 "use client"
 import Image from "next/image";
-import halflitre from "../assets/0.5lbgremove.png"
-import oneAndHalfLitre from "../assets/1.5lbgremove.png"
-import fiveLitre from "../assets/5lbgremove.png"
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/slice";
+import { Products } from "../data/products";
 
 export default function Page(){
 
   const dispatch = useDispatch()
 
- const initialProducts = [
-    {
-      id: 1,
-      heading: "500ml Everyday Case",
-      slug:"500ml",
-      about:
-        "The standard for convenience. Perfect for guest rooms, retail counters, and corporate events.",
-      unitsLabel: "24 Units / Case",
-      oldPrice: "900rs",
-      price: "700rs",
-      badge: "Most Popular",
-      badgeStyle: "bg-red-600 text-white",
-      defaultQty: 10,
-      img: halflitre,
-    },
-    {
-      id: 2,
-      heading: "1.5L High Capacity",
-      slug:"1500ml",
-      about:
-        "Designed for active hydration. Ideal for gymnasiums, sports facilities, and site canteens.",
-      unitsLabel: "12 Units / Case",
-      oldPrice: "720rs",
-      price: "560rs",
-      badge: null,
-      badgeStyle: "",
-      defaultQty: 5,
-      img: oneAndHalfLitre,
-    },
-    {
-      id: 3,
-      heading: "5L Bulk Jug",
-      slug:"5000ml",
-      about:
-        "Maximum efficiency for bulk use. Best for hospitality kitchens and industrial water stations.",
-      unitsLabel: "4 Units / Case",
-      oldPrice: "480rs",
-      price: "350rs",
-      badge: "Best Value",
-      badgeStyle: "bg-gray-900 text-white",
-      defaultQty: 20,
-      img: fiveLitre,
-    },
-  ];
+  
 
   const [quantities, setQuantities] = useState(
-    initialProducts.reduce(
+    Products.reduce(
       (acc, item) => ({ ...acc, [item.id]: item.defaultQty }),
       {}
     )
@@ -83,7 +38,7 @@ export default function Page(){
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto px-6">
-        {initialProducts.map((item) => {
+        {Products.map((item) => {
           const qty = quantities[item.id];
 
           return (
@@ -154,7 +109,7 @@ export default function Page(){
 
                 <button onClick={()=> {
                   console.log(item)
-                  dispatch(addToCart(item))}} className="cursor-target w-full bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition-all active:scale-95">
+                  dispatch(addToCart({...item, quantity: qty}))}} className="cursor-target w-full bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition-all active:scale-95">
                   Add to Cart
                 </button>
               </div>
