@@ -1,4 +1,4 @@
-export  const initialProducts = [
+export  const Products = [
     {
       id: 1,
       heading: "500ml Everyday Case",
