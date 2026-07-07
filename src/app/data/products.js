@@ -9,8 +9,8 @@ export  const Products = [
       about:
         "The standard for convenience. Perfect for guest rooms, retail counters, and corporate events.",
       unitsLabel: "24 Units / Case",
-      oldPrice: "900rs",
-      price: "700rs",
+      oldPrice: 900,
+      price: 700,
       badge: "Most Popular",
       badgeStyle: "bg-red-600 text-white",
       defaultQty: 10,
@@ -23,8 +23,8 @@ export  const Products = [
       about:
         "Designed for active hydration. Ideal for gymnasiums, sports facilities, and site canteens.",
       unitsLabel: "12 Units / Case",
-      oldPrice: "720rs",
-      price: "560rs",
+      oldPrice: 720,
+      price: 560,
       badge: null,
       badgeStyle: "",
       defaultQty: 5,
@@ -37,8 +37,8 @@ export  const Products = [
       about:
         "Maximum efficiency for bulk use. Best for hospitality kitchens and industrial water stations.",
       unitsLabel: "4 Units / Case",
-      oldPrice: "480rs",
-      price: "350rs",
+      oldPrice: 480,
+      price: 350,
       badge: "Best Value",
       badgeStyle: "bg-gray-900 text-white",
       defaultQty: 20,

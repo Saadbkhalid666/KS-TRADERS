@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import { melfira } from "../fonts/fonts";
+import { useSelector } from "react-redux";
  
 
 const navLinks = [
@@ -14,7 +15,8 @@ const navLinks = [
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+const cartItems = useSelector(state => state.cart.cartItems)
+const totalItems = cartItems.reduce((total,item) => total + item.quantity,0)
   return (
     <header className=" top-0 left-0 w-full  border-b border-gray-200 bg-white/80 backdrop-blur-xl">
       
@@ -43,14 +45,21 @@ export const Navbar = () => {
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
+          <div className="relative">
+
           <button className="rounded-full p-2 transition cursor-target hover:bg-red-50">
-            <Link href={"/cart"}>
+            <Link href={"/cart"} >
             <ShoppingCart
               size={22}
               className="text-gray-600 hover:text-[#E53935]"
               />
               </Link>
+              {totalItems > 0 && (
+                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white">{totalItems}</span>
+              )}
+
           </button>
+              </div>
 
           <button className="rounded-xl cursor-target bg-[#E53935] px-6 py-3 font-semibold text-white transition duration-300 hover:bg-red-700 active:scale-95">
             Order Now
