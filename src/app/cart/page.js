@@ -4,14 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { decreaseQuantity, increaseQuantity } from "../redux/slice";
+import { clearCart, decreaseQuantity, increaseQuantity, removeFromCart } from "../redux/slice";
 
 export default function Page() {
 const cartItems = useSelector(state => state.cart.cartItems)
 const dispatch = useDispatch()
 
 
-const totalPrice = cartItems.reduce((total,item)=> total + item.price * item.quantity,0)
+const subtotal = cartItems.reduce((total,item)=> total + item.price * item.quantity,0)
+const delivery = 200
+const totalPrice = delivery + subtotal
 
 if(cartItems.length === 0){
   return (
@@ -104,7 +106,7 @@ if(cartItems.length === 0){
 
                       {/* Remove */}
 
-                      <button className="flex items-center gap-2 text-red-600 hover:text-red-700 font-medium">
+                      <button onClick={()=> dispatch(removeFromCart(item.id))} className="flex items-center gap-2 text-red-600 hover:text-red-700 font-medium">
                         <Trash2 size={18} />
                         Remove
                       </button>
@@ -151,7 +153,7 @@ if(cartItems.length === 0){
                 <div className="flex justify-between text-xl">
                   <span className="font-bold">Total</span>
 
-                  <span className="font-bold text-[#e63539]">Rs. {total}</span>
+                  <span className="font-bold text-[#e63539]">Rs. {totalPrice}</span>
                 </div>
               </div>
               <Link href={"/checkout"}>
@@ -160,7 +162,7 @@ if(cartItems.length === 0){
                 </button>
               </Link>
 
-              <button className="w-full mt-4 border-2 border-black hover:bg-black hover:text-white transition py-4 rounded-xl font-semibold">
+              <button onClick={()=> dispatch(clearCart())}  className="w-full mt-4 border-2 border-black hover:bg-black hover:text-white transition py-4 rounded-xl font-semibold">
                 Clear Cart
               </button>
 
