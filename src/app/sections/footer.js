@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const Footer = () => {
   return (
-    <footer className="w-full rounded-t-xl bg-black text-white mt-20">
+    <footer className="w-full rounded-t-xl bg-black text-white ">
       {/* Top Section */}
       <div className="mx-auto flex max-w-7xl flex-col justify-between gap-12 px-6 py-12 md:flex-row">
         {/* Company Info */}

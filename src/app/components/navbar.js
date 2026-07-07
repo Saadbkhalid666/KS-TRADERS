@@ -8,7 +8,7 @@ import { melfira } from "../fonts/fonts";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Store", href: "/store" },
+  { name: "Store", href: "/catalog" },
   { name: "Support", href: "/support" },
 ];
 
