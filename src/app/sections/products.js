@@ -114,24 +114,7 @@ export const Products = () => {
                 <p className="text-gray-600 mb-6 flex-1">{item.about}</p>
 
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="flex border border-gray-300 rounded-lg overflow-hidden">
-                    <button
-                      onClick={() => updateQuantity(item.id, -1)}
-                      className="cursor-target px-3 py-1 bg-gray-50 hover:bg-gray-200 transition-colors font-bold"
-                    >
-                      -
-                    </button>
-                    <span className="px-4 py-1 border-x border-gray-300 font-bold">
-                      {qty}
-                    </span>
-                    <button
-                      onClick={() => updateQuantity(item.id, 1)}
-                      className="cursor-target px-3 py-1 bg-gray-50 hover:bg-gray-200 transition-colors font-bold"
-                    >
-                      +
-                    </button>
-                  </div>
-
+                   
                   <div className="flex-1 text-right">
                     <span className="block text-xs text-gray-400 line-through">
                       {item.oldPrice}
