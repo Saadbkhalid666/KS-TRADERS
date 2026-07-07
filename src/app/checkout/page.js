@@ -140,6 +140,7 @@ Total : Rs. ${item.price * item.quantity}
           {/* LEFT */}
 
           <form
+            id="checkoutForm"
             onSubmit={handleSubmit}
             className="lg:col-span-2 bg-white rounded-3xl shadow-sm p-8"
           >
@@ -354,8 +355,9 @@ Total : Rs. ${item.price * item.quantity}
 
               <button
                 type="submit"
+                form="checkoutForm"
                 disabled={loading}
-                className="mt-8 w-full bg-[#e63539] hover:bg-red-700 disabled:bg-red-300 transition text-white py-4 rounded-xl font-semibold"
+                className="mt-8 w-full cursor-target bg-[#e63539] hover:bg-red-700 disabled:bg-red-300 transition text-white py-4 rounded-xl font-semibold"
               >
                 {loading ? "Placing Order..." : "Place Order"}
               </button>
