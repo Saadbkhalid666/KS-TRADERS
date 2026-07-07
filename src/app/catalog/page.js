@@ -4,8 +4,12 @@ import halflitre from "../assets/0.5lbgremove.png"
 import oneAndHalfLitre from "../assets/1.5lbgremove.png"
 import fiveLitre from "../assets/5lbgremove.png"
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/slice";
 
 export default function Page(){
+
+  const dispatch = useDispatch()
 
  const initialProducts = [
     {
@@ -148,7 +152,9 @@ export default function Page(){
                   </div>
                 </div>
 
-                <button className="cursor-target w-full bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition-all active:scale-95">
+                <button onClick={()=> {
+                  console.log(item)
+                  dispatch(addToCart(item))}} className="cursor-target w-full bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition-all active:scale-95">
                   Add to Cart
                 </button>
               </div>

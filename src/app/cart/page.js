@@ -3,10 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft } from "lucide-react";
+import { useSelector } from "react-redux";
 
 export default function Page() {
-  // Replace this with Redux later
-  const cartItems = [
+const cart = useSelector(state => state.cart.cartItems)
+console.log(cart)  
+const cartItems = [
     {
       id: 1,
       name: "Nestlé Pure Life 500ml",
