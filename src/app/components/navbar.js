@@ -8,7 +8,7 @@ import { melfira } from "../fonts/fonts";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Store", href: "/store" },
+  { name: "Store", href: "/catalog" },
   { name: "Support", href: "/support" },
 ];
 
@@ -44,10 +44,12 @@ export const Navbar = () => {
 
         <div className="hidden md:flex items-center gap-4">
           <button className="rounded-full p-2 transition cursor-target hover:bg-red-50">
+            <Link href={"/cart"}>
             <ShoppingCart
               size={22}
               className="text-gray-600 hover:text-[#E53935]"
-            />
+              />
+              </Link>
           </button>
 
           <button className="rounded-xl cursor-target bg-[#E53935] px-6 py-3 font-semibold text-white transition duration-300 hover:bg-red-700 active:scale-95">

@@ -1,16 +1,16 @@
 "use client";
 import Image from "next/image";
-import halflitre from "../assets/0.5l.jpg";
-import oneAndHalfLitre from "../assets/1.5l.jpg";
-import fiveLitre from "../assets/5l.jpg";
-import { useState } from "react";
+import halflitre from "../assets/0.5lbgremove.png";
+import oneAndHalfLitre from "../assets/1.5lbgremove.png";
+import fiveLitre from "../assets/5lbgremove.png";
 import Link from "next/link";
 
-export const Products = () => {
+export default function Page() {
   const initialProducts = [
     {
       id: 1,
       heading: "500ml Everyday Case",
+      slug: "500ml",
       about:
         "The standard for convenience. Perfect for guest rooms, retail counters, and corporate events.",
       unitsLabel: "24 Units / Case",
@@ -24,6 +24,7 @@ export const Products = () => {
     {
       id: 2,
       heading: "1.5L High Capacity",
+      slug: "1500ml",
       about:
         "Designed for active hydration. Ideal for gymnasiums, sports facilities, and site canteens.",
       unitsLabel: "12 Units / Case",
@@ -37,6 +38,7 @@ export const Products = () => {
     {
       id: 3,
       heading: "5L Bulk Jug",
+      slug: "5000ml",
       about:
         "Maximum efficiency for bulk use. Best for hospitality kitchens and industrial water stations.",
       unitsLabel: "4 Units / Case",
@@ -48,20 +50,6 @@ export const Products = () => {
       img: fiveLitre,
     },
   ];
-
-  const [quantities, setQuantities] = useState(
-    initialProducts.reduce(
-      (acc, item) => ({ ...acc, [item.id]: item.defaultQty }),
-      {}
-    )
-  );
-
-  const updateQuantity = (id, delta) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [id]: Math.max(1, prev[id] + delta),
-    }));
-  };
 
   return (
     <div className="pt-20 pb-20   bg-gray-100">
@@ -77,8 +65,6 @@ export const Products = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto px-6">
         {initialProducts.map((item) => {
-          const qty = quantities[item.id];
-
           return (
             <div
               key={item.id}
@@ -86,7 +72,7 @@ export const Products = () => {
             >
               <div className="relative h-64 overflow-hidden">
                 <Image
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="  group-hover:scale-105 hover:-translate-y-20 hover:rotate-45 transition-transform duration-500"
                   src={item.img}
                   alt={item.heading}
                 />
@@ -114,24 +100,6 @@ export const Products = () => {
                 <p className="text-gray-600 mb-6 flex-1">{item.about}</p>
 
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="flex border border-gray-300 rounded-lg overflow-hidden">
-                    <button
-                      onClick={() => updateQuantity(item.id, -1)}
-                      className="cursor-target px-3 py-1 bg-gray-50 hover:bg-gray-200 transition-colors font-bold"
-                    >
-                      -
-                    </button>
-                    <span className="px-4 py-1 border-x border-gray-300 font-bold">
-                      {qty}
-                    </span>
-                    <button
-                      onClick={() => updateQuantity(item.id, 1)}
-                      className="cursor-target px-3 py-1 bg-gray-50 hover:bg-gray-200 transition-colors font-bold"
-                    >
-                      +
-                    </button>
-                  </div>
-
                   <div className="flex-1 text-right">
                     <span className="block text-xs text-gray-400 line-through">
                       {item.oldPrice}
@@ -144,11 +112,11 @@ export const Products = () => {
                     </span>
                   </div>
                 </div>
-<Link href={"/catalog"}>
-                <button className="cursor-target w-full bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition-all active:scale-95">
-                  Add to Cart
-                </button>
-</Link>
+                <Link href={`/catalog/${item.slug}`}>
+                  <button className="cursor-target w-full bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition-all active:scale-95">
+                    Add to Cart
+                  </button>
+                </Link>
               </div>
             </div>
           );
@@ -156,4 +124,4 @@ export const Products = () => {
       </div>
     </div>
   );
-};
+}
