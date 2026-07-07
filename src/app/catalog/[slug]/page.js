@@ -1,15 +1,30 @@
+"use client"
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Products } from "@/app/data/products";
+import { use, useState } from "react";
 
-export default async function ProductPage({ params }) {
-  const { slug } = await params;
-
+export default function ProductPage({ params }) {
+  const { slug } =  use(params);
+const [quantity, setQuantity] = useState("1")
   const product = Products.find((p) => p.slug === slug);
 
   if (!product) {
     notFound();
   }
+  const [quantities, setQuantities] = useState(
+    initialProducts.reduce(
+      (acc, item) => ({ ...acc, [item.id]: item.defaultQty }),
+      {}
+    )
+  );
+
+  const updateQuantity = (id, delta) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [id]: Math.max(1, prev[id] + delta),
+    }));
+  };
 
   return (
     <section className="bg-white min-h-screen py-12">
@@ -20,7 +35,7 @@ export default async function ProductPage({ params }) {
           Home / Catalog /
           <span className="text-[#e63539] font-semibold">
             {" "}
-            {product.name}
+            {product.heading}
           </span>
         </div>
 
@@ -30,7 +45,7 @@ export default async function ProductPage({ params }) {
           <div className="bg-gray-100 rounded-3xl p-10 flex items-center justify-center">
             <Image
               src={product.img}
-              alt={product.name}
+              alt={product.heading}
               width={500}
               height={500}
               className="object-contain hover:scale-105 transition duration-500"
@@ -45,7 +60,7 @@ export default async function ProductPage({ params }) {
             </span>
 
             <h1 className="text-5xl font-bold text-black mt-4">
-              {product.name}
+              {product.heading}
             </h1>
 
             <p className="text-4xl font-bold text-[#e63539] mt-6">
