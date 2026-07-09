@@ -10,11 +10,13 @@ import {
   Truck,
 } from "lucide-react";
 import emailjs from "@emailjs/browser";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart } from "../redux/slice";
 
 export default function CheckoutPage() {
 const cartItems = useSelector(state => state.cart.cartItems);
-  
+const [isShown, setIsShown] = useState(false)
+const dispatch = useDispatch()  
 
 
   const delivery = 200;
@@ -99,9 +101,17 @@ Total : Rs. ${item.price * item.quantity}
         notes: "",
       });
 
-      // Later:
-      // dispatch(clearCart())
-      // router.push("/thank-you")
+      dispatch(clearCart())
+      setTimeout(()=>{
+        setIsShown(true)
+
+      },2000)
+
+      setTimeout(()=>{
+        setIsShown(false)
+        
+      },4000)
+
     } catch (error) {
       console.log(error);
 
@@ -284,7 +294,7 @@ Total : Rs. ${item.price * item.quantity}
           {/* RIGHT */}
 
           <div>
-            <div className="bg-white rounded-3xl shadow-sm p-8 sticky top-28">
+            <div className="bg-white rounded-3xl shadow-sm p-8 sticky top-28 cursor-target">
               <h2 className="text-2xl font-bold mb-6">Order Summary</h2>
 
               <div className="space-y-5">
@@ -345,7 +355,8 @@ Total : Rs. ${item.price * item.quantity}
                 type="submit"
                 form="checkoutForm"
                 disabled={loading}
-                className="mt-8 w-full cursor-target bg-[#e63539] hover:bg-red-700 disabled:bg-red-300 transition text-white py-4 rounded-xl font-semibold"
+                className="cursor-target mt-8 w-full cursor-target bg-[#e63539] hover:bg-red-700 disabled:bg-red-300 transition text-white py-4 rounded-xl font-semibold"
+                onClick={()=>dispatch(clearCart())}
               >
                 {loading ? "Placing Order..." : "Place Order"}
               </button>
