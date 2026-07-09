@@ -12,10 +12,10 @@ import { Bebas_Neue, Inter, JetBrains_Mono } from 'next/font/google';
  */
 
 const CONTACT = {
-  phone: '+92 300 0000000',
-  phoneHref: 'tel:+923000000000',
-  whatsappHref: 'https://wa.me/923000000000',
-  email: 'support@kstraders.pk',
+  phone: '+92 3244186212',
+  phoneHref: 'tel:+923244186212',
+  whatsappHref: 'https://wa.me/923244186212',
+  email: 'khalidm2296@gmail.com',
 };
 
 const display = Bebas_Neue({ subsets: ['latin'], weight: '400', variable: '--font-display' });
@@ -29,19 +29,15 @@ const CATEGORIES = [
     faqs: [
       {
         q: "What's the minimum order quantity (MOQ)?",
-        a: 'Standard MOQ is 50 cases per order for city deliveries, and 100 cases for outstation deliveries. Distributors on a standing agreement have custom MOQs set at onboarding.',
+        a: 'Standard MOQ is 5 cases per order for city deliveries. Distributors on a standing agreement have custom MOQs set at onboarding.',
       },
       {
         q: 'How do I place a bulk order?',
-        a: 'Call or WhatsApp your account manager, or email orders@kstraders.pk with your business name, delivery address, and case quantity. Confirmed orders are dispatched within 24–48 hours.',
+        a: 'Call or WhatsApp, or email khalidm2296@gmail.com with your business name, delivery address, and case quantity. Confirmed orders are dispatched within 24–48 hours or sometimes late.',
       },
       {
         q: 'Which areas do you deliver to?',
-        a: 'We currently cover Lahore and surrounding districts directly, with outstation delivery to Faisalabad, Gujranwala, and Sialkot via our logistics partners.',
-      },
-      {
-        q: 'Can I set up recurring weekly deliveries?',
-        a: 'Yes — recurring orders can be scheduled on a weekly or bi-weekly cycle. Ask your account manager to set up a standing order profile.',
+        a: 'We currently cover Lahore.',
       },
     ],
   },
@@ -56,28 +52,6 @@ const CATEGORIES = [
       {
         q: 'Do you offer credit terms for regular distributors?',
         a: 'Yes, after your first three completed orders you can apply for credit terms through your account manager, subject to a short verification.',
-      },
-      {
-        q: 'How do I get a copy of my invoice?',
-        a: 'Invoices are emailed automatically after dispatch. If you need a reprint, share your order number through the form below and we will resend it same day.',
-      },
-    ],
-  },
-  {
-    id: 'distributor',
-    label: 'Become a Distributor',
-    faqs: [
-      {
-        q: 'How do I apply to become a KS Traders distributor?',
-        a: 'Submit the contact form below with "Distributor Application" as your subject and your business registration details. Our team reviews applications within 3 business days.',
-      },
-      {
-        q: 'What are the requirements?',
-        a: 'A registered business or shop, cold storage capacity, and a minimum monthly volume commitment based on your territory.',
-      },
-      {
-        q: 'Is there a minimum monthly volume commitment?',
-        a: 'Yes, this is set per territory during onboarding and reviewed quarterly based on demand.',
       },
     ],
   },
@@ -96,20 +70,6 @@ const CATEGORIES = [
       {
         q: "What's your replacement policy?",
         a: 'Verified damaged or missing stock is replaced free of charge on your next delivery, or refunded on request.',
-      },
-    ],
-  },
-  {
-    id: 'tracking',
-    label: 'Track Shipment',
-    faqs: [
-      {
-        q: 'How do I track my order?',
-        a: 'Use the order tracker at the top of this page with your order number (format KS-2026-00123), or ask your account manager for a live status.',
-      },
-      {
-        q: "My tracking hasn't updated — what should I do?",
-        a: 'Tracking updates at each dispatch checkpoint and can lag by a few hours on outstation routes. If it has not moved in over 24 hours, contact us with the order number.',
       },
     ],
   },
@@ -154,7 +114,6 @@ function ChannelCard({ title, value, hint, href, tone }) {
 export default function SupportPage() {
   const [activeCategory, setActiveCategory] = useState('orders');
   const [openFaq, setOpenFaq] = useState(null);
-  const [trackingNumber, setTrackingNumber] = useState('');
   const [trackingResult, setTrackingResult] = useState(null);
 
   const activeFaqs = CATEGORIES.find((c) => c.id === activeCategory)?.faqs ?? [];
@@ -162,7 +121,6 @@ export default function SupportPage() {
   function handleTrack(e) {
     e.preventDefault();
     if (!trackingNumber.trim()) return;
-    // Placeholder lookup — wire this up to your real order/shipment API.
     setTrackingResult({
       number: trackingNumber.trim(),
       status: 'Out for delivery',
@@ -190,20 +148,7 @@ export default function SupportPage() {
             the case. Track a shipment, browse common questions, or reach a real person below.
           </p>
   
-
-          {trackingResult && (
-            <div className="mt-3 flex max-w-xl items-center justify-between rounded-sm border border-[#e63539]/20 bg-[#e63539]/5 px-4 py-3">
-              <div>
-                <p className="font-mono text-xs text-black/50">
-                  {trackingResult.number}
-                </p>
-                <p className="text-sm font-medium">{trackingResult.status}</p>
-              </div>
-              <p className="font-mono text-xs text-black/50">
-                ETA {trackingResult.eta}
-              </p>
-            </div>
-          )}
+ 
         </div>
       </section>
 
