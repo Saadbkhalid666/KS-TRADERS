@@ -12,12 +12,14 @@ import {
 import emailjs from "@emailjs/browser";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../redux/slice";
+import { useRouter } from "next/navigation";
 
 export default function CheckoutPage() {
-const cartItems = useSelector(state => state.cart.cartItems);
-const [isShown, setIsShown] = useState(false)
-const dispatch = useDispatch()  
-
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const [isShown, setIsShown] = useState(false);
+  const router = useRouter()
+  
+  const dispatch = useDispatch();
 
   const delivery = 200;
 
@@ -90,7 +92,6 @@ Total : Rs. ${item.price * item.quantity}
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
       );
 
-      alert("Order placed successfully!");
 
       setForm({
         name: "",
@@ -101,17 +102,15 @@ Total : Rs. ${item.price * item.quantity}
         notes: "",
       });
 
-      dispatch(clearCart())
-      setTimeout(()=>{
-        setIsShown(true)
+      dispatch(clearCart());
+      setTimeout(() => {
+        setIsShown(true);
 
-      },2000)
-
-      setTimeout(()=>{
-        setIsShown(false)
-        
-      },4000)
-
+        setTimeout(() => {
+          setIsShown(false);
+          router.push("/")
+        }, 4000); 
+      }, 1000);
     } catch (error) {
       console.log(error);
 
@@ -120,6 +119,41 @@ Total : Rs. ${item.price * item.quantity}
       setLoading(false);
     }
   };
+
+  if (isShown) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-[90%] text-center animate-fade-in">
+          <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-green-100">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-8 h-8 text-green-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          </div>
+
+          <h1 className="text-3xl font-bold text-gray-900">Thank You!</h1>
+
+          <p className="mt-3 text-gray-600">
+            Your order has been placed successfully.
+          </p>
+
+          <p className="mt-2 text-sm text-gray-500">
+            We will contact you shortly to confirm your order.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <section className="min-h-screen bg-gray-100 py-14">
@@ -356,7 +390,7 @@ Total : Rs. ${item.price * item.quantity}
                 form="checkoutForm"
                 disabled={loading}
                 className="cursor-target mt-8 w-full cursor-target bg-[#e63539] hover:bg-red-700 disabled:bg-red-300 transition text-white py-4 rounded-xl font-semibold"
-                onClick={()=>dispatch(clearCart())}
+             
               >
                 {loading ? "Placing Order..." : "Place Order"}
               </button>
