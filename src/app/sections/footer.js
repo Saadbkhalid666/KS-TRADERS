@@ -26,10 +26,22 @@ export const Footer = () => {
             <h5 className="mb-1 font-bold text-white cursor-target">Legal</h5>
 
             <Link
+              href="/catalog"
+              className="text-sm text-gray-400 transition cursor-target hover:text-red-500"
+            >
+              Store
+            </Link>
+            <Link
               href="/terms"
               className="text-sm text-gray-400 transition cursor-target hover:text-red-500"
             >
               Terms of Sale
+            </Link>
+            <Link
+              href="/support"
+              className="text-sm text-gray-400 transition cursor-target hover:text-red-500"
+            >
+              Support
             </Link>
           </div>
         </div>
@@ -42,20 +54,7 @@ export const Footer = () => {
         </p>
 
         <div className="flex gap-4">
-          <Globe
-            size={22}
-            className="cursor-pointer text-gray-400 transition hover:text-red-500"
-          />
-
-          <Network
-            size={22}
-            className="cursor-pointer text-gray-400 transition hover:text-red-500"
-          />
-
-          <Share2
-            size={22}
-            className="cursor-pointer text-gray-400 transition hover:text-red-500"
-          />
+         <p>Developed & Designed by <a className="text-red-300 cursor-target" href="https://saadbinkhalid.vercel.app">Saad Bin Khalid</a></p>
         </div>
       </div>
     </footer>

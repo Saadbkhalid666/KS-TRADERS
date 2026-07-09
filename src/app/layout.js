@@ -3,6 +3,7 @@ import "./globals.css";
 import TargetCursor from "./components/cursor/cursor";
 import { Navbar } from "./components/navbar";
 import { Providers } from "./redux/provider";
+import CartLoader from "./utils/CartLoader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +36,7 @@ export default function RootLayout({ children }) {
           cursorColor="#ffffff"
           cursorColorOnTarget="#B497CF"
         />
-
+<CartLoader   />
         <Navbar />
         {children}
         </Providers>

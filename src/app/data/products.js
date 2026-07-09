@@ -13,7 +13,7 @@ export  const Products = [
       price: 700,
       badge: "Most Popular",
       badgeStyle: "bg-red-600 text-white",
-      defaultQty: 10,
+      defaultQty: 1,
       img: halflitre,
     },
     {
@@ -27,7 +27,7 @@ export  const Products = [
       price: 560,
       badge: null,
       badgeStyle: "",
-      defaultQty: 5,
+      defaultQty: 1,
       img: oneAndHalfLitre,
     },
     {
@@ -41,7 +41,7 @@ export  const Products = [
       price: 350,
       badge: "Best Value",
       badgeStyle: "bg-gray-900 text-white",
-      defaultQty: 20,
+      defaultQty: 1,
       img: fiveLitre,
     },
   ];

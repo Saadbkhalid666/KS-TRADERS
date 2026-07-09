@@ -16,7 +16,7 @@ const navLinks = [
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 const cartItems = useSelector(state => state.cart.cartItems)
-const totalItems = cartItems.reduce((total,item) => total + item.quantity,0)
+const totalItems = cartItems.reduce((total,item) => total + item.quantity, 0)
   return (
     <header className=" top-0 left-0 w-full  border-b border-gray-200 bg-white/80 backdrop-blur-xl">
       
@@ -60,10 +60,11 @@ const totalItems = cartItems.reduce((total,item) => total + item.quantity,0)
 
           </button>
               </div>
-
+<Link href={"/catalog"}>
           <button className="rounded-xl cursor-target bg-[#E53935] px-6 py-3 font-semibold text-white transition duration-300 hover:bg-red-700 active:scale-95">
             Order Now
           </button>
+</Link>
         </div>
 
         <div className="flex items-center gap-3 md:hidden">
@@ -101,9 +102,11 @@ const totalItems = cartItems.reduce((total,item) => total + item.quantity,0)
           </ul>
 
           <div className="px-6 pb-6">
+<Link href={"/catalog"}>
             <button className="w-full rounded-xl bg-[#E53935] py-3 font-semibold text-white transition hover:bg-red-700">
               Order Now
             </button>
+</Link>
           </div>
         </nav>
       </div>

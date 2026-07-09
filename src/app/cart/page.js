@@ -66,11 +66,11 @@ const totalPrice = subtotal + delivery;
 
         <div className="grid lg:grid-cols-3 gap-10">
           {/* LEFT */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-6 ">
             {cartItems.map((item) => (
               <div
                 key={item.id}
-                className="bg-white rounded-3xl p-6 border shadow-sm"
+                className="bg-white rounded-3xl cursor-target p-6 border shadow-sm"
               >
                 <div className="flex flex-col md:flex-row gap-6">
                   <div className="w-full md:w-44 h-44 bg-gray-100 rounded-2xl flex justify-center items-center">
@@ -103,7 +103,7 @@ const totalPrice = subtotal + delivery;
                           onClick={() =>
                             dispatch(decreaseQuantity(item.id))
                           }
-                          className="p-3"
+                          className="p-3 cursor-target"
                         >
                           <Minus size={18} />
                         </button>
@@ -116,7 +116,7 @@ const totalPrice = subtotal + delivery;
                           onClick={() =>
                             dispatch(increaseQuantity(item.id))
                           }
-                          className="p-3"
+                          className="p-3 cursor-target"
                         >
                           <Plus size={18} />
                         </button>
@@ -126,7 +126,7 @@ const totalPrice = subtotal + delivery;
                         onClick={() =>
                           dispatch(removeFromCart(item.id))
                         }
-                        className="flex items-center gap-2 text-red-600"
+                        className="flex items-center gap-2 text-red-600 cursor-target"
                       >
                         <Trash2 size={18} />
                         Remove
@@ -148,7 +148,7 @@ const totalPrice = subtotal + delivery;
 
           {/* RIGHT */}
           <div>
-            <div className="bg-white rounded-3xl border p-8 sticky top-28 shadow-sm">
+            <div className="bg-white rounded-3xl border p-8 sticky top-28 shadow-sm cursor-target">
               <h2 className="text-2xl font-bold mb-8">
                 Order Summary
               </h2>
@@ -175,14 +175,14 @@ const totalPrice = subtotal + delivery;
               </div>
 
               <Link href="/checkout">
-                <button className="w-full mt-10 bg-[#e63539] text-white py-4 rounded-xl">
+                <button className="cursor-target w-full mt-10 bg-[#e63539] text-white py-4 rounded-xl">
                   Proceed to Checkout
                 </button>
               </Link>
 
               <button
                 onClick={() => dispatch(clearCart())}
-                className="w-full mt-4 border-2 border-black py-4 rounded-xl"
+                className="w-full mt-4 border-2 cursor-target border-black py-4 rounded-xl"
               >
                 Clear Cart
               </button>

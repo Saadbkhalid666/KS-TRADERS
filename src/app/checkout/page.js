@@ -10,23 +10,16 @@ import {
   Truck,
 } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart } from "../redux/slice";
+import { useRouter } from "next/navigation";
 
 export default function CheckoutPage() {
-  // Replace with Redux later
-  const cartItems = [
-    {
-      id: 1,
-      name: "Nestlé Pure Life 500ml",
-      price: 60,
-      quantity: 5,
-    },
-    {
-      id: 2,
-      name: "Nestlé Pure Life 1.5L",
-      price: 120,
-      quantity: 2,
-    },
-  ];
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const [isShown, setIsShown] = useState(false);
+  const router = useRouter()
+  
+  const dispatch = useDispatch();
 
   const delivery = 200;
 
@@ -99,7 +92,6 @@ Total : Rs. ${item.price * item.quantity}
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
       );
 
-      alert("Order placed successfully!");
 
       setForm({
         name: "",
@@ -110,9 +102,15 @@ Total : Rs. ${item.price * item.quantity}
         notes: "",
       });
 
-      // Later:
-      // dispatch(clearCart())
-      // router.push("/thank-you")
+      dispatch(clearCart());
+      setTimeout(() => {
+        setIsShown(true);
+
+        setTimeout(() => {
+          setIsShown(false);
+          router.push("/")
+        }, 4000); 
+      }, 1000);
     } catch (error) {
       console.log(error);
 
@@ -121,6 +119,41 @@ Total : Rs. ${item.price * item.quantity}
       setLoading(false);
     }
   };
+
+  if (isShown) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-[90%] text-center animate-fade-in">
+          <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-green-100">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-8 h-8 text-green-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          </div>
+
+          <h1 className="text-3xl font-bold text-gray-900">Thank You!</h1>
+
+          <p className="mt-3 text-gray-600">
+            Your order has been placed successfully.
+          </p>
+
+          <p className="mt-2 text-sm text-gray-500">
+            We will contact you shortly to confirm your order.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <section className="min-h-screen bg-gray-100 py-14">
@@ -295,7 +328,7 @@ Total : Rs. ${item.price * item.quantity}
           {/* RIGHT */}
 
           <div>
-            <div className="bg-white rounded-3xl shadow-sm p-8 sticky top-28">
+            <div className="bg-white rounded-3xl shadow-sm p-8 sticky top-28 cursor-target">
               <h2 className="text-2xl font-bold mb-6">Order Summary</h2>
 
               <div className="space-y-5">
@@ -305,7 +338,7 @@ Total : Rs. ${item.price * item.quantity}
                     className="flex justify-between border-b pb-4"
                   >
                     <div>
-                      <h3 className="font-semibold">{item.name}</h3>
+                      <h3 className="font-semibold">{item.heading}</h3>
 
                       <p className="text-gray-500 text-sm">
                         Qty : {item.quantity}
@@ -356,7 +389,8 @@ Total : Rs. ${item.price * item.quantity}
                 type="submit"
                 form="checkoutForm"
                 disabled={loading}
-                className="mt-8 w-full cursor-target bg-[#e63539] hover:bg-red-700 disabled:bg-red-300 transition text-white py-4 rounded-xl font-semibold"
+                className="cursor-target mt-8 w-full cursor-target bg-[#e63539] hover:bg-red-700 disabled:bg-red-300 transition text-white py-4 rounded-xl font-semibold"
+             
               >
                 {loading ? "Placing Order..." : "Place Order"}
               </button>
