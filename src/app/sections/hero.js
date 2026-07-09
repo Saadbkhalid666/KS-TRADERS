@@ -1,11 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import DotField from "../components/background/dotField";
 
 export const Hero = () => {
   return (
     <div className="h-screen w-full   bg-[#e5e7eb]">
-         
       <DotField
         dotRadius={1.5}
         dotSpacing={14}
@@ -23,8 +23,7 @@ export const Hero = () => {
         <div className="mx-auto flex h-screen max-w-7xl flex-col justify-center px-6">
           <div className="max-w-3xl">
             <h1 className="md:text-6xl  text-2xl sm:text-3xl font-extrabold leading-tight">
-              Premium Nestle Pure Life
-              Water Delivered at
+              Premium Nestle Pure Life Water Delivered at
               <br />
               <span className="text-[#e63539] ">Wholesale Prices</span>
             </h1>
@@ -36,13 +35,16 @@ export const Hero = () => {
             </p>
 
             <div className="mt-8 flex gap-4">
-              <button className="rounded-lg bg-red-600 px-6 py-3 font-semibold text-white">
-                Shop Now
-              </button>
-
-              <button className="rounded-lg border border-gray-400 px-6 py-3 font-semibold">
-                Contact Sales
-              </button>
+              <Link href={"/catalog"}>
+                <button className="rounded-lg bg-red-600 px-6 py-3 font-semibold text-white">
+                  Shop Now
+                </button>
+              </Link>
+              <Link href={"/support"}>
+                <button className="rounded-lg border border-gray-400 px-6 py-3 font-semibold">
+                  Contact Sales
+                </button>
+              </Link>
             </div>
           </div>
         </div>
