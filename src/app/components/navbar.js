@@ -16,7 +16,7 @@ const navLinks = [
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 const cartItems = useSelector(state => state.cart.cartItems)
-const totalItems = cartItems.reduce((total,item) => total + item.quantity,0)
+const totalItems = cartItems.reduce((total,item) => total + item.quantity, 0)
   return (
     <header className=" top-0 left-0 w-full  border-b border-gray-200 bg-white/80 backdrop-blur-xl">
       
