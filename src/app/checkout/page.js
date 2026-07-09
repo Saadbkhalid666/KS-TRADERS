@@ -41,6 +41,7 @@ export default function CheckoutPage() {
     notes: "",
   });
 
+  emailjs.init({publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,})
   const handleChange = (e) => {
     setForm((prev) => ({
       ...prev,
@@ -84,17 +85,18 @@ Total : Rs. ${item.price * item.quantity}
         delivery,
         total,
       };
+      console.log({
+  serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+  templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+  publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+});
 
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
         templateParams,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
       );
-      console.log(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
-      console.log(process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID)
-      console.log(process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID)
-
+     
 
       setForm({
         name: "",
