@@ -91,6 +91,9 @@ Total : Rs. ${item.price * item.quantity}
         templateParams,
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
       );
+      console.log(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
+      console.log(process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID)
+      console.log(process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID)
 
 
       setForm({
