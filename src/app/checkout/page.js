@@ -10,23 +10,12 @@ import {
   Truck,
 } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import { useSelector } from "react-redux";
 
 export default function CheckoutPage() {
-  // Replace with Redux later
-  const cartItems = [
-    {
-      id: 1,
-      name: "Nestlé Pure Life 500ml",
-      price: 60,
-      quantity: 5,
-    },
-    {
-      id: 2,
-      name: "Nestlé Pure Life 1.5L",
-      price: 120,
-      quantity: 2,
-    },
-  ];
+const cartItems = useSelector(state => state.cart.cartItems);
+  
+
 
   const delivery = 200;
 
@@ -305,7 +294,7 @@ Total : Rs. ${item.price * item.quantity}
                     className="flex justify-between border-b pb-4"
                   >
                     <div>
-                      <h3 className="font-semibold">{item.name}</h3>
+                      <h3 className="font-semibold">{item.heading}</h3>
 
                       <p className="text-gray-500 text-sm">
                         Qty : {item.quantity}
