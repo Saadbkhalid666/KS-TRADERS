@@ -28,11 +28,12 @@ export const Hero = () => {
               <span className="text-[#e63539] ">Wholesale Prices</span>
             </h1>
 
-            <p className="mt-6 max-w-2xl text-lg text-gray-700">
-              Fuel your business with the world&apos;s most trusted hydration
-              partner. Direct-to-warehouse delivery with transparent tiered
-              pricing for procurement managers and high-volume outlets.
-            </p>
+          <p className="mt-6 max-w-2xl text-lg text-gray-700">
+  KS Traders supplies genuine Nestlé Pure Life water bottles at wholesale
+  prices in Lahore. Order 500ml, 1.5L and 5L mineral water bottles for
+  restaurants, offices, schools, supermarkets, retailers and bulk commercial
+  use with fast delivery.
+</p>
 
             <div className="mt-8 flex gap-4">
               <Link href={"/catalog"}>

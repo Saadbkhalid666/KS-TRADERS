@@ -16,8 +16,48 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "KS Traders",
-  description: "Wholesale Water Bottles",
+  title: "KS Traders | Nestlé Pure Life Wholesale Water Supplier in Lahore",
+  description:
+    "KS Traders is a trusted wholesale supplier of Nestlé Pure Life water bottles in Lahore. Buy 500ml, 1.5L and 5L bottles at competitive wholesale prices with fast delivery.",
+
+  keywords: [
+    "Nestle Water",
+    "Nestlé Pure Life",
+    "Water Bottle",
+    "Wholesale Water",
+    "Water Supplier Lahore",
+    "Mineral Water",
+    "Bulk Water Bottles",
+    "KS Traders",
+    "Nestle Distributor Lahore",
+    "Wholesale Nestle Water",
+    "Drinking Water",
+    "Water Delivery Lahore",
+    "500ml Water Bottles",
+    "1.5L Water Bottles",
+    "5L Water Bottles"
+  ],
+
+  openGraph: {
+    title: "KS Traders | Wholesale Nestlé Pure Life Water",
+    description:
+      "Premium Nestlé Pure Life water delivered across Lahore at wholesale prices.",
+    url: "https://kstraders.vercel.app",
+    siteName: "KS Traders",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_PK",
+    type: "website",
+  },
+
+  alternates: {
+    canonical: "https://kstraders.vercel.app",
+  },
 };
 
 export default function RootLayout({ children }) {
