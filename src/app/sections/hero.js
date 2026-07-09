@@ -36,7 +36,7 @@ export const Hero = () => {
 
             <div className="mt-8 flex gap-4">
               <Link href={"/catalog"}>
-                <button className="rounded-lg bg-red-600 px-6 py-3 font-semibold text-white">
+                <button className="rounded-lg bg-red-600 px-6 py-3 hover:scale-105 duration-300 ease-in-out transition-all font-semibold text-white">
                   Shop Now
                 </button>
               </Link>
