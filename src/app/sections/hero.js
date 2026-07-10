@@ -4,16 +4,13 @@ import Link from "next/link";
 import DotField from "../components/background/dotField";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { usePathname } from "next/navigation";
-import {useGSAP} from "@gsap/react"
+
 export const Hero = () => {
   const headingRef = useRef(null);
   const infoRef = useRef(null);
   const buttonsRef = useRef(null);
- const pathname = usePathname()
 
- 
-  const ctx = gsap.context(()=>{
+  useEffect(() => {
 
       gsap.from(headingRef.current, {
         x: -100,
@@ -30,8 +27,7 @@ export const Hero = () => {
       duration: 1.3,
     })
 
-    });
-  return ctx.revert()
+  }, []);
 
   return (
     <div className="h-screen w-full   bg-[#e5e7eb]">
