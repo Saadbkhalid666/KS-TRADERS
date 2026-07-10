@@ -8,7 +8,7 @@ import { Footer } from "./sections/footer";
 
 export default function Home() {
   return (
-  <div>
+  <div className="cursor-none">
 
      <Hero   />
      <WhyChoseUs   />
