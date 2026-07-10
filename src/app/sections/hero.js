@@ -2,8 +2,36 @@
 
 import Link from "next/link";
 import DotField from "../components/background/dotField";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
 export const Hero = () => {
+  const headingRef = useRef(null);
+  const infoRef = useRef(null);
+  const buttonsRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(()=>{
+
+      gsap.from(headingRef.current, {
+        x: -100,
+        opacity: 0,
+      duration: 1,
+    });
+    gsap.from(infoRef.current, {
+      opacity: 0,
+      duration: 1,
+    });
+    gsap.from(buttonsRef.current, {
+      y: 200,
+      opacity: 0,
+      duration: 1.3,
+    })
+
+    });
+  return ctx.revert()
+  }, []);
+
   return (
     <div className="h-screen w-full   bg-[#e5e7eb]">
       <DotField
@@ -22,20 +50,23 @@ export const Hero = () => {
       >
         <div className="mx-auto flex h-screen max-w-7xl flex-col justify-center px-6">
           <div className="max-w-3xl">
-            <h1 className="md:text-6xl  text-2xl sm:text-3xl font-extrabold leading-tight">
+            <h1
+              ref={headingRef}
+              className="md:text-6xl  text-2xl sm:text-3xl font-extrabold leading-tight"
+            >
               Premium Nestle Pure Life Water Delivered at
               <br />
               <span className="text-[#e63539] ">Wholesale Prices</span>
             </h1>
 
-          <p className="mt-6 max-w-2xl text-lg text-gray-700">
-  KS Traders supplies genuine Nestlé Pure Life water bottles at wholesale
-  prices in Lahore. Order 500ml, 1.5L and 5L mineral water bottles for
-  restaurants, offices, schools, supermarkets, retailers and bulk commercial
-  use with fast delivery.
-</p>
+            <p ref={infoRef} className="mt-6 max-w-2xl text-lg text-gray-700">
+              KS Traders supplies genuine Nestlé Pure Life water bottles at
+              wholesale prices in Lahore. Order 500ml, 1.5L and 5L mineral water
+              bottles for restaurants, offices, schools, supermarkets, retailers
+              and bulk commercial use with fast delivery.
+            </p>
 
-            <div className="mt-8 flex gap-4">
+            <div ref={buttonsRef} className="mt-8 flex gap-4">
               <Link href={"/catalog"}>
                 <button className="rounded-lg bg-red-600 px-6 py-3 hover:scale-105 duration-300 ease-in-out transition-all font-semibold text-white">
                   Shop Now
