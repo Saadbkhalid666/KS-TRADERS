@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import gsap from "gsap"
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import { melfira } from "../fonts/fonts";
@@ -15,12 +16,25 @@ const navLinks = [
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const navbox = useRef(null)
   const totalItems = cartItems.reduce(
     (total, item) => total + item.quantity,
     0,
   );
+
+  useEffect(()=>{
+    gsap.from(navbox.current,{
+        opacity:0,
+      duration:1,
+    })
+  },[])
+
+
+
+
+
   return (
-    <header className=" top-0 left-0 w-full  border-b border-gray-200 bg-white/80 backdrop-blur-xl cursor-none">
+    <header ref={navbox} className=" top-0 left-0 w-full  border-b border-gray-200 bg-white/80 backdrop-blur-xl cursor-none">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-8">
         <Link
           href="/"
