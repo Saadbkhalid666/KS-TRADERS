@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import gsap from "gsap"
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import { melfira } from "../fonts/fonts";
 import { useSelector } from "react-redux";
- 
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -15,11 +15,26 @@ const navLinks = [
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-const cartItems = useSelector(state => state.cart.cartItems)
-const totalItems = cartItems.reduce((total,item) => total + item.quantity, 0)
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const navbox = useRef(null)
+  const totalItems = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0,
+  );
+
+  useEffect(()=>{
+    gsap.from(navbox.current,{
+        opacity:0,
+      duration:1,
+    })
+  },[])
+
+
+
+
+
   return (
-    <header className=" top-0 left-0 w-full  border-b border-gray-200 bg-white/80 backdrop-blur-xl">
-      
+    <header ref={navbox} className=" top-0 left-0 w-full  border-b border-gray-200 bg-white/80 backdrop-blur-xl cursor-none">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-8">
         <Link
           href="/"
@@ -46,29 +61,41 @@ const totalItems = cartItems.reduce((total,item) => total + item.quantity, 0)
 
         <div className="hidden md:flex items-center gap-4">
           <div className="relative">
-
-          <button className="rounded-full p-2 transition cursor-target hover:bg-red-50">
-            <Link href={"/cart"} >
-            <ShoppingCart
-              size={22}
-              className="text-gray-600 hover:text-[#E53935]"
-              />
+            <button className="rounded-full p-2 transition cursor-target hover:bg-red-50">
+              <Link href={"/cart"}>
+                <ShoppingCart
+                  size={22}
+                  className="text-gray-600 hover:text-[#E53935]"
+                />
               </Link>
               {totalItems > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white">{totalItems}</span>
+                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white">
+                  {totalItems}
+                </span>
               )}
-
-          </button>
-              </div>
-<Link href={"/catalog"}>
-          <button className="rounded-xl cursor-target bg-[#E53935] px-6 py-3 font-semibold text-white transition duration-300 hover:bg-red-700 active:scale-95">
-            Order Now
-          </button>
-</Link>
+            </button>
+          </div>
+          <Link href={"/catalog"}>
+            <button className="rounded-xl cursor-target bg-[#E53935] px-6 py-3 font-semibold text-white transition duration-300 hover:bg-red-700 active:scale-95">
+              Order Now
+            </button>
+          </Link>
         </div>
 
-        <div className="flex items-center gap-3 md:hidden">
-          <ShoppingCart size={22} className="cursor-pointer text-gray-700" />
+        <div className=" flex items-center gap-3 md:hidden">
+          <button className=" relative rounded-full p-2 transition cursor-target hover:bg-red-50">
+            <Link href={"/cart"}>
+              <ShoppingCart
+                size={22}
+                className="text-gray-600 hover:text-[#E53935]"
+              />
+            </Link>
+            {totalItems > 0 && (
+              <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white">
+                {totalItems}
+              </span>
+            )}
+          </button>
 
           <button onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? (
@@ -102,11 +129,11 @@ const totalItems = cartItems.reduce((total,item) => total + item.quantity, 0)
           </ul>
 
           <div className="px-6 pb-6">
-<Link href={"/catalog"}>
-            <button className="w-full rounded-xl bg-[#E53935] py-3 font-semibold text-white transition hover:bg-red-700">
-              Order Now
-            </button>
-</Link>
+            <Link href={"/catalog"}>
+              <button className="w-full rounded-xl bg-[#E53935] py-3 font-semibold text-white transition hover:bg-red-700">
+                Order Now
+              </button>
+            </Link>
           </div>
         </nav>
       </div>
