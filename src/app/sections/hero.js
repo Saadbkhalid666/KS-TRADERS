@@ -4,30 +4,50 @@ import Link from "next/link";
 import DotField from "../components/background/dotField";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { usePathname } from "next/navigation";
 
 export const Hero = () => {
   const headingRef = useRef(null);
   const infoRef = useRef(null);
   const buttonsRef = useRef(null);
+  const pathname = usePathname();
 
   useEffect(() => {
-
-      gsap.from(headingRef.current, {
+    gsap.fromTo(
+      headingRef.current,
+      {
         x: -100,
         opacity: 0,
-      duration: 1,
-    });
-    gsap.from(infoRef.current, {
-      opacity: 0,
-      duration: 1,
-    });
-    gsap.from(buttonsRef.current, {
-      y: 200,
-      opacity: 0,
-      duration: 1.3,
-    })
-
-  }, []);
+        duration: 1,
+      },
+      {
+        x: 0,
+        opacity: 1,
+      },
+    );
+    gsap.fromTo(
+      infoRef.current,
+      {
+        opacity: 0,
+        duration: 1,
+      },
+      {
+        opacity: 1,
+      },
+    );
+    gsap.fromTo(
+      buttonsRef.current,
+      {
+        y: 200,
+        opacity: 0,
+        duration: 1.3,
+      },
+      {
+        y: 0,
+        opacity: 1,
+      },
+    );
+  }, [pathname]);
 
   return (
     <div className="h-screen w-full   bg-[#e5e7eb]">
