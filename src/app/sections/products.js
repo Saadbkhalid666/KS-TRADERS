@@ -3,10 +3,36 @@ import Image from "next/image";
 import halflitre from "../assets/0.5l.jpg";
 import oneAndHalfLitre from "../assets/1.5l.jpg";
 import fiveLitre from "../assets/5l.jpg";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import gsap from "gsap";
 
 export const Products = () => {
+  const pathname = usePathname();
+  const cardsRef = useRef();
+
+  useEffect(() => {
+    gsap.fromTo(
+      cardsRef.current,
+      {
+        opacity: 0,
+        scale: 0.7,
+      },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 1,
+        scrollTrigger: {
+          trigger: cardsRef.current,
+          start: "top 70%",
+          end: "bottom 60%",
+          scrub: true,
+        },
+      },
+    );
+  }, [pathname]);
+
   const initialProducts = [
     {
       id: 1,
@@ -52,8 +78,8 @@ export const Products = () => {
   const [quantities, setQuantities] = useState(
     initialProducts.reduce(
       (acc, item) => ({ ...acc, [item.id]: item.defaultQty }),
-      {}
-    )
+      {},
+    ),
   );
 
   const updateQuantity = (id, delta) => {
@@ -75,7 +101,10 @@ export const Products = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto px-6">
+      <div
+        ref={cardsRef}
+        className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto px-6"
+      >
         {initialProducts.map((item) => {
           const qty = quantities[item.id];
 
@@ -114,7 +143,6 @@ export const Products = () => {
                 <p className="text-gray-600 mb-6 flex-1">{item.about}</p>
 
                 <div className="flex items-center gap-4 mb-6">
-                   
                   <div className="flex-1 text-right">
                     <span className="block text-xs text-gray-400 line-through">
                       {item.oldPrice}
@@ -127,11 +155,11 @@ export const Products = () => {
                     </span>
                   </div>
                 </div>
-<Link href={"/catalog"}>
-                <button className="cursor-target w-full bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition-all active:scale-95">
-                  Add to Cart
-                </button>
-</Link>
+                <Link href={"/catalog"}>
+                  <button className="cursor-target w-full bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition-all active:scale-95">
+                    Add to Cart
+                  </button>
+                </Link>
               </div>
             </div>
           );
