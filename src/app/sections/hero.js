@@ -96,6 +96,7 @@ export const Hero = () => {
               </Link>
             </div>
           </div>
+          
         </div>
       </DotField>
     </div>
