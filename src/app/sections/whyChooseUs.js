@@ -1,60 +1,108 @@
 "use client";
+
 import { Banknote, ShieldCheck, Store, Truck } from "lucide-react";
 import { melfira, sansation } from "../fonts/fonts";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const WhyChoseUs = () => {
-  const cardRef = useRef(null);
   const pathname = usePathname();
 
   useEffect(() => {
-    gsap.fromTo(
-      cardRef.current,
-      {
-        y: 100,
-        opacity: 1,
-        duration: 1,
-        scrollTrigger: {
-          trigger: cardRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          scrub: true,
-        },
-      },
-      {
-        y: 0,
-        opacity: 1,
-      },
-    );
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray(".feature-card");
+
+      cards.forEach((card) => {
+        const icon = card.querySelector(".feature-icon");
+        const heading = card.querySelector(".feature-heading");
+        const about = card.querySelector(".feature-about");
+        const inner = [icon, heading, about].filter(Boolean);
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            end: "bottom 15%",
+            scrub: 1,
+            // markers: true, // uncomment to debug trigger positions
+          },
+        });
+
+        tl.fromTo(
+          card,
+          { opacity: 0, scale: 0.82, y: 90 },
+          { opacity: 1, scale: 1, y: 0, ease: "power2.out", duration: 0.5 }
+        )
+          .fromTo(
+            inner,
+            { opacity: 0, y: 24, scale: 0.9 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              ease: "power2.out",
+              duration: 0.35,
+              stagger: 0.08,
+            },
+            "-=0.3"
+          )
+          .to(inner, {
+            opacity: 0,
+            y: -16,
+            scale: 0.92,
+            ease: "power2.in",
+            duration: 0.25,
+            stagger: 0.05,
+          })
+          .to(
+            card,
+            {
+              opacity: 0,
+              scale: 0.82,
+              y: -90,
+              ease: "power2.in",
+              duration: 0.5,
+            },
+            "-=0.15"
+          );
+      });
+    });
+
+    ScrollTrigger.refresh();
+
+    return () => ctx.revert();
   }, [pathname]);
 
   const featuresCards = [
     {
-      id: "1",
-      icon: <ShieldCheck />,
+      id: 1,
+      icon: <ShieldCheck size={32} />,
       heading: "Genuine Products",
       about:
         "Direct sourcing guarantees 100% authentic Nestlé quality for every pallet.",
     },
     {
-      id: "2",
-      icon: <Banknote />,
+      id: 2,
+      icon: <Banknote size={32} />,
       heading: "Wholesale Prices",
       about:
         "Dynamic tiered pricing designed to scale with your business requirements.",
     },
     {
-      id: "3",
-      icon: <Truck />,
+      id: 3,
+      icon: <Truck size={32} />,
       heading: "Fast Delivery",
       about:
-        "Priority logistics network ensures next-day delivery for bulk regional orders",
+        "Priority logistics network ensures next-day delivery for bulk regional orders.",
     },
     {
-      id: "4",
-      icon: <Store />,
+      id: 4,
+      icon: <Store size={32} />,
       heading: "Bulk Orders",
       about:
         "Seamlessly manage large-scale replenishment with our custom portal.",
@@ -62,28 +110,31 @@ export const WhyChoseUs = () => {
   ];
 
   return (
-    <div className=" pt-20 pb-10 bg-[#f8f8fa] mx-auto ">
-      <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-4 gap-4 ml-2 mr-2 ">
-        {featuresCards.map((item, index) => {
-          return (
+    <section className="bg-[#f8f8fa] py-20">
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {featuresCards.map((item) => (
             <div
-            ref={cardRef}
-              key={index}
-              className="bg-white px-10 py-15 rounded-3xl border-2 border-gray-400 cursor-target hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-2xl "
+              key={item.id}
+              className="feature-card rounded-3xl border-2 border-gray-300 bg-white px-8 py-12 shadow-sm"
             >
-              <p className="text-[#9e1e20]  bg-red-200 w-max px-4 py-3 cursor-target  rounded-2xl  ">
+              <div className="feature-icon mb-5 w-max rounded-2xl bg-red-100 p-4 text-[#9e1e20]">
                 {item.icon}
-              </p>
-              <h1
-                className={`text-[#111111]  text-2xl font-bold ${melfira.className} pt-1 `}
+              </div>
+
+              <h2
+                className={`feature-heading mb-3 text-2xl font-bold ${melfira.className}`}
               >
                 {item.heading}
-              </h1>
-              <p className={`${sansation.className}`}>{item.about}</p>
+              </h2>
+
+              <p className={`feature-about ${sansation.className}`}>
+                {item.about}
+              </p>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
